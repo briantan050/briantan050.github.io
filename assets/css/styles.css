@@ -1,0 +1,307 @@
+
+  /* **************************** */
+  /*            Main              */
+  /* **************************** */
+
+  body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f0f0f0; 
+    color: #333; 
+  }
+  
+  /* **************************** */
+  /*        Animations            */
+  /* **************************** */
+
+  @keyframes revealUp {
+    0% {
+      opacity: 0;
+      transform: translateY(40px); /* Move down slightly */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0); /* Move up to original position */
+    }
+  }
+
+  /* **************************** */
+  /*           Header             */
+  /* **************************** */
+
+  header {
+    background-color: #222; 
+    color: #fff; 
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  header h1 {
+    font-size: 36px;
+  }
+
+  /* Style the link inside the header */
+  header a {
+    text-decoration: none; /* Remove underlines */
+    color: #fff; /* White link color */
+  }
+
+  /* Remove purple color when link is clicked */
+  header a:active,
+  header a:focus,
+  header a:hover {
+    color: #fff; /* White link color on hover */
+    outline: none; /* Remove the default focus outline */
+  }
+  
+  /* **************************** */
+  /*         Header buttons       */
+  /* **************************** */
+
+  .header-buttons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue button background color */
+    color: #fff; /* Button text color */
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 10px;
+  }
+  
+  .header-btn:first-child {
+    margin-left: 0; /* Remove left margin for the first button */
+  }
+  
+  .header-btn:hover {
+    background-color: #0056b3; /* Darker blue button background color on hover */
+  }
+  
+  .header-buttons {
+    margin-left: auto;  /* Move buttons to the right side of the header */
+  }
+  
+  main {
+    padding: 0px;
+  }
+  
+  /* **************************** */
+  /*             Hero             */
+  /* **************************** */
+
+  .hero {
+    background-image: url('../images/hero-image.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 850px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero-content {
+    text-align: center;
+    position: relative;
+    opacity: 0;
+    animation: revealUp 1s forwards;
+  }
+
+  .hero-content h2 {
+    font-size: 60px;
+    margin-bottom: 20px;
+  }
+  
+  .cta-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue CTA button background color */
+    color: #fff; /* CTA button text color */
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .cta-btn:hover {
+    background-color: #0056b3; /* Darker blue CTA button background color on hover */
+  }
+
+  /* **************************** */
+  /*            skills            */
+  /* **************************** */
+
+  .skills-header {
+    margin-top: 50px;
+    font-size: 30px;
+    color: white;
+  }
+  .cards {
+    /* background-image: url('../images/hero-image.jpg'); */
+    display: inline-block;
+    height: 800px;
+    width: 100%;
+    justify-content: space-between;
+    background-color: #314459;
+    text-align: center;
+    align-items: center;
+  }
+
+  .card {
+    display: inline-block;
+    width: 300px;
+    height: 350px;
+    margin-top: 50px;
+    background-color: #f0f0f0;
+    opacity: 0;
+  }
+
+
+  /* **************************** */
+  /*            Grids             */
+  /* **************************** */
+
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 300px)); /* Adjust the minimum and maximum width as needed */
+    gap: 20px;
+    margin: 0 auto; /* Center the grid */
+    max-width: 900px; /* Set a maximum width for the grid */
+  }
+
+  .post {
+    background-color: #f0f0f0;
+    position: relative;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+  }
+
+  .reveal {
+    animation: revealUp 1s forwards;
+  }
+
+  .post-image img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 4px;
+    transition: transform 0.3s ease; /* Add a smooth transition effect */
+  }
+
+.post-image img:hover {
+  transform: scale(1.1); /* Zoom out the image slightly on hover */
+}
+
+.post-meta {
+  color: #888;
+  font-size: 14px;
+}
+
+.post-link {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.post-excerpt {
+  margin-top: 10px;
+  color: #444;
+}
+
+/* **************************** */
+/*             Footer           */
+/* **************************** */
+
+footer {
+  background-color: #222; /* Dark grey footer background color */
+  color: #fff; /* Footer text color */
+  text-align: center;
+  padding: 20px;
+}
+
+/* **************************** */
+/*          Devices             */
+/* <600px, 601, 768, 992, >1200 */
+/* **************************** */
+
+@media only screen and (max-width: 600px) {
+  .hero {
+    background-color: red;
+  }
+
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(200px, 300px)); 
+    gap: 20px;
+    margin: 0 auto; 
+    max-width: 300px; 
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  .hero {
+    background-color: orange;
+  }
+
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(200px, 300px));
+    gap: 20px;
+    margin: 0 auto;
+    max-width: 550px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .hero {
+    background-color: yellow;
+  }
+
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(200px, 300px));
+    gap: 20px;
+    margin: 0 auto; 
+    max-width: 601px; 
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .hero {
+    background-color: green;
+  }
+
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 300px));
+    gap: 20px;
+    margin: 0 auto; 
+    max-width: 900px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .hero {
+    background-color: blue;
+  }
+
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(350px, 300px));
+    gap: 20px;
+    margin: 0 auto; 
+    max-width: 1100px;
+  }
+}
