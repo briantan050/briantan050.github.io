@@ -1,0 +1,59 @@
+---
+layout: base
+---
+<article class="entry">
+
+  <!-- Header -->
+  <div class="entry-container">
+    <header class="entry-header">
+      <div class="entry-header-title">
+        <h2>{{ page.title | escape }}</h2>
+      </div>
+      <div class="entry-header-date">
+        <p>
+          {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+          <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+            {{ page.date | date: date_format }}
+          </time>
+          {%- if page.modified_date -%}
+            ~ 
+            {%- assign mdate = page.modified_date | date_to_xmlschema -%}
+            <time class="dt-modified" datetime="{{ mdate }}" itemprop="dateModified">
+              {{ mdate | date: date_format }}
+            </time>
+          {%- endif -%}
+          {%- if page.author -%}
+            • {% for author in page.author %}
+              <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span class="p-author h-card" itemprop="name">{{ author }}</span></span>
+                {%- if forloop.last == false %}, {% endif -%}
+            {% endfor %}
+          {%- endif -%}
+        </p>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="entry-content-container">
+      <div class="entry-content-text" itemprop="articleBody">
+        {{ content }}
+      </div>
+        <!-- Image -->
+      {% if page.images %}
+      <div class="entry-content-images">
+        {% for image in page.images %}
+        <div class="entry-content-image">
+          <img src="{{ image | relative_url }}" alt="Image">
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+  {%- if site.disqus.shortname -%}
+    {%- include disqus_comments.html -%}
+  {%- endif -%}
+
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+</article>

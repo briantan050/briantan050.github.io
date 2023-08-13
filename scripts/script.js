@@ -1,26 +1,54 @@
-function isElementInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    return (
-      rect.top >= 0 &&
-      rect.left >= 0 &&
-      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-  }
-  
-  function revealOnScroll() {
-    const posts = document.querySelectorAll('.post, .card');
-    let delay = 0; // Initial delay
-  
-    posts.forEach(post => {
-      if (isElementInViewport(post)) {
-        setTimeout(() => post.classList.add('reveal'), delay);
-        delay += 300; // Increase the delay for the next post by 300ms (adjust as needed)
+// add "show" to cards
+const observeHidden = new IntersectionObserver((cards) => {
+  cards.forEach((card) => {
+    if (card.isIntersecting) {
+      const visibleRatio = card.intersectionRatio;
+      if (visibleRatio >= 0.5) {
+        card.target.classList.add('show');
+      } else {
+        card.target.classList.remove('show');
       }
-    });
-  }
+    } else {
+      card.target.classList.remove('show');
+    }
+  });
+}, {
+  threshold: 0.5
+});
+const hiddenElements = document.querySelectorAll('.card-hide');
+hiddenElements.forEach((el) => observeHidden.observe(el));
 
-  // Call revealOnScroll on page load and scroll
-  window.addEventListener('load', revealOnScroll);
-  window.addEventListener('scroll', revealOnScroll);
-  
+
+// add "show" to posts
+const observeHideOnce = new IntersectionObserver((posts) => {
+  posts.forEach((post) => {
+    if (post.isIntersecting) {
+      const visibleRatio = post.intersectionRatio;
+      if (visibleRatio >= 0.5) {
+        post.target.classList.add('show');
+      }
+    }
+  });
+}, {
+  threshold: 0.5
+});
+const hideOnceElements = document.querySelectorAll('.post-hide');
+hideOnceElements.forEach((el) => observeHideOnce.observe(el));
+
+
+// sticky header
+window.addEventListener("scroll", function() {
+  const header = document.querySelector(".sticky-header");
+  const appearanceLevel = 500;
+  if (window.scrollY >= appearanceLevel) {
+    header.classList.add("show");
+  } else {
+    header.classList.remove("show");
+  }
+});
+
+// lightbox
+lightbox.option({
+  'resizeDuration': 200,
+  'wrapAround': true
+});

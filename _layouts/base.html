@@ -5,20 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brian H Tan</title>
   <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/post_styles.css">
+  <script defer src="/scripts/script.js"></script>
+  <script defer src="/scripts/gallery.js"></script>
+
 </head>
 
 <!-- Body -->
 <body>
-
   <!-- Header -->
-  <header>
-    <h1><a class="site-title" rel="author" href="{{ "/" | relative_url }}">Big Header</a></h1>
+  <header id="home">
+    <div class="header-home-link">
+      <img src="https://raw.githubusercontent.com/briantan050/Uploads/fcc933f323d88a90af05fbf948c9a1abc3672e6f/window.svg">
+    </div>
     <div class="header-buttons">
-      <a href="#" class="header-btn">About</a>
-      <a href="#" class="header-btn">Contact</a>
+      <a href="{{ site.baseurl }}/" class="header-btn">Home</a>
+      <a href="{{ site.baseurl }}/#skills" class="header-btn">Skills</a>
+      <a href="{{ site.baseurl }}/#projects" class="header-btn">Projects</a>
+      <a href="{{ site.baseurl }}/#contact" class="header-btn">Contact</a>
     </div>
   </header>
 
+    <!-- Header -->
+    <div class="sticky-header header-hide" id="sticky-header-section hidden-header">
+      <div class="header-buttons">
+        <a href="#home" class="header-btn">Home</a>
+        <a href="#skills" class="header-btn">Skills</a>
+        <a href="#projects" class="header-btn">Projects</a>
+        <a href="#contact" class="header-btn">Contact</a>
+      </div>
+    </div>
   <!-- Main -->
   <main>
     <div class="wrapper">
@@ -27,9 +43,8 @@
     </div>
 
   </main>
-  <footer>
+  <footer id="contact">
     <p>&copy; 2023 Random Company. All rights reserved.</p>
   </footer>
-  <script src="/scripts/script.js"></script>
 </body>
 </html>

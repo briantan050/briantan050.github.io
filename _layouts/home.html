@@ -3,8 +3,8 @@ layout: base
 ---
 
 <!-- Hero -->
-<section class="hero">
-  <div class="hero-content">
+<section class="hero" id="hero">
+  <div class="hero-content hidden">
     <h2>Brian Tan</h2>
     <p>GIS stuff</p>
     <a href="#" class="cta-btn">Learn More</a>
@@ -12,83 +12,118 @@ layout: base
 </section>
 
 <!-- cards -->
-<section class="cards">
-  <div class="skills-header">
+<section class="cards-section" id="skills">
+  <div class="cards-header">
     <h1>Skills</h1>
   </div>
-  <div class="card">
-    <h3>GIS</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  </div>
-  <div class="card">
-    <h3>Programming</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  </div>
-  <div class="card">
-    <h3>Data Analysis</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  <div class="cards">
+
+    <div class="card card-hide">
+      <div class="card-row">
+        <div class="card-icon">
+          <img src="/assets/images/gis.svg">
+        </div>
+        <div class="card-name">
+          <h2>GIS</h2>
+        </div>
+      </div>
+      <div class="card-description">
+        <p>Passionate about using GIS to aid decision-making </p>
+      </div>
+    </div>
+
+    <div class="card card-hide">
+      <div class="card-row">
+        <div class="card-icon">
+          <img src="/assets/images/code.svg">
+        </div>
+        <div class="card-name">
+          <h2>Programming</h2>
+        </div>
+      </div>
+      <div class="card-description">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </div>
+
+    <div class="card card-hide">
+      <div class="card-row">
+        <div class="card-icon">
+          <img src="/assets/images/dataAnalysis.svg">
+        </div>
+        <div class="card-name">
+          <h2>Data <br>Analysis</h2>
+        </div>
+      </div>
+      <div class="card-description">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- Check for Jekyll stuff -->
-<div class="home">
-  {%- if page.title -%}
-    <h1 class="page-heading">{{ page.title }}</h1>
-  {%- endif -%}
-
-  {% if site.paginate %}
-    {% assign posts = paginator.posts %}
-  {% else %}
-    {% assign posts = site.posts %}
-  {% endif %}
-
-  {%- if posts.size > 0 -%}
-    {%- if page.list_title -%}
-      <h2 class="post-list-heading">{{ page.list_title }}</h2>
+<section class="posts-section" id="projects">
+  <div class="posts-header">
+    <h1>Projects</h1>
+  </div>
+  <div class="posts-div">
+    {%- if page.title -%}
+      <h1 class="page-heading">{{ page.title }}</h1>
     {%- endif -%}
-    <div class="post-grid">
-      {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
 
-      <!-- Posts -->
-      {%- for post in posts -%}
-      <div class="post">
-        {% if post.image %}
-        <div class="post-image">
-          <img src="{{ post.image }}" alt="{{ post.title | escape }}">
-        </div>
-        {% endif %}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
-        </h3>
-        {%- if site.show_excerpts -%}
-          <p class="post-excerpt">{{ post.excerpt }}</p>
-        {%- endif -%}
-      </div>
-      {%- endfor -%}
-    </div>
-
-    <!-- Check for more jekyll stuff -->
     {% if site.paginate %}
-      <div class="pager">
-        <ul class="pagination">
-        {%- if paginator.previous_page %}
-          <li><a href="{{ paginator.previous_page_path | relative_url }}" class="previous-page">{{ paginator.previous_page }}</a></li>
-        {%- else %}
-          <li><div class="pager-edge">•</div></li>
-        {%- endif %}
-          <li><div class="current-page">{{ paginator.page }}</div></li>
-        {%- if paginator.next_page %}
-          <li><a href="{{ paginator.next_page_path | relative_url }}" class="next-page">{{ paginator.next_page }}</a></li>
-        {%- else %}
-          <li><div class="pager-edge">•</div></li>
-        {%- endif %}
-        </ul>
+      {% assign posts = paginator.posts %}
+    {% else %}
+      {% assign posts = site.posts %}
+    {% endif %}
+
+    {%- if posts.size > 0 -%}
+      {%- if page.list_title -%}
+        <h2 class="post-list-heading">{{ page.list_title }}</h2>
+      {%- endif -%}
+      <div class="post-grid">
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+
+        <!-- Posts -->
+        {%- for post in posts -%}
+        <div class="post post-hide">
+          {% if post.image %}
+          <div class="post-image">
+            <img src="{{ post.image }}" alt="{{ post.title | escape }}">
+          </div>
+          {% endif %}
+          <span class="post-meta">{{ post.date | date: date_format }}</span>
+          <h3>
+            <a class="post-link" href="{{ post.url | relative_url }}">
+              {{ post.title | escape }}
+            </a>
+          </h3>
+          {%- if site.show_excerpts -%}
+            <p class="post-excerpt">{{ post.excerpt }}</p>
+          {%- endif -%}
+        </div>
+        {%- endfor -%}
       </div>
-    {%- endif %}
 
-  {%- endif -%}
-
-</div>
+      <!-- Check for more jekyll stuff -->
+      {% if site.paginate %}
+        <div class="pager">
+          <ul class="pagination">
+          {%- if paginator.previous_page %}
+            <li><a href="{{ paginator.previous_page_path | relative_url }}" class="previous-page">{{ paginator.previous_page }}</a></li>
+          {%- else %}
+            <li><div class="pager-edge">•</div></li>
+          {%- endif %}
+            <li><div class="current-page">{{ paginator.page }}</div></li>
+          {%- if paginator.next_page %}
+            <li><a href="{{ paginator.next_page_path | relative_url }}" class="next-page">{{ paginator.next_page }}</a></li>
+          {%- else %}
+            <li><div class="pager-edge">•</div></li>
+          {%- endif %}
+          </ul>
+        </div>
+      {%- endif %}
+    {%- endif -%}
+  </div>
+</section>
