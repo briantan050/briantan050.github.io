@@ -3,36 +3,22 @@
   /*            Main              */
   /* **************************** */
 
-  body, h1, h2, h3, p, ul, li {
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    background-color: darkgrey; 
-    color: #333; 
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-  }
-
   .entry-container {
-    background-color: darkgreen;
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
   }
 
   .entry-header {
-    background-color: darkblue;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    min-height: 200px;
+    min-height: 150px;
     height: auto;
   }
 
   .entry-header-title {
-    background-color: darkcyan;
     color: white;
     font-size: 50px;
     line-height: 60px;
@@ -42,39 +28,23 @@
   }
 
   .entry-header-date {
-    background-color: darkgoldenrod;
+    margin-top: 10px;
     margin-left: 6%;
     color: white;
   }
 
   .entry-content-container {
-    background-color: darkred;
+    background-color: #333;
     display: flex;
-    height: auto;
     width: 100%;
+    min-height: 300px;
   }
 
   .entry-content-text {
-    background-color: darkolivegreen;
+    background-color: #222;
     color: white;
     width: 600px;
     margin-left: 6%;
-  }
-
-  .entry-content-images {
-    background-color: black;
-    display: grid;
-    grid-template-columns: repeat(3, 200px);
-    grid-row-gap: 2px;
-    margin-left: 4%;
-    max-width: 900px;
-  }
-
-  .entry-content-image img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    object-position: center;
   }
 
   /* **************************** */

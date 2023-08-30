@@ -2,16 +2,18 @@
 layout: entry
 title: Welcome to Jekyll
 date: 2016-05-20 01:01:01 -0700
-image: /assets/images/dog1.png
-images:
-  - /assets/images/dog2.png
+thumbnail: /assets/images/dog1.png
+gallery:
   - /assets/images/dog1.png
   - /assets/images/dog2.png
+  - /assets/images/dog3.png
+  - /assets/images/dog4.png
   - /assets/images/dog1.png
   - /assets/images/dog2.png
-  - /assets/images/dog1.png
-  - /assets/images/dog2.png
-  - /assets/images/dog1.png
+  - /assets/images/dog3.png
+  - /assets/images/dog4.png
+
+embed: /assets/embeds/Notebook.html
 ---
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.

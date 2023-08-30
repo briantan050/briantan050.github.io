@@ -1,59 +1,100 @@
 ---
 layout: base
 ---
+
 <article class="entry">
-
   <!-- Header -->
-  <div class="entry-container">
-    <header class="entry-header">
-      <div class="entry-header-title">
-        <h2>{{ page.title | escape }}</h2>
-      </div>
-      <div class="entry-header-date">
-        <p>
-          {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-          <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-            {{ page.date | date: date_format }}
-          </time>
-          {%- if page.modified_date -%}
-            ~ 
-            {%- assign mdate = page.modified_date | date_to_xmlschema -%}
-            <time class="dt-modified" datetime="{{ mdate }}" itemprop="dateModified">
-              {{ mdate | date: date_format }}
-            </time>
-          {%- endif -%}
-          {%- if page.author -%}
-            • {% for author in page.author %}
-              <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-                <span class="p-author h-card" itemprop="name">{{ author }}</span></span>
-                {%- if forloop.last == false %}, {% endif -%}
-            {% endfor %}
-          {%- endif -%}
-        </p>
-      </div>
-    </header>
+  <header class="entry-header">
+    <div class="entry-header-title">
+      <h2>{{ page.title | escape }}</h2>
+    </div>
+    <div class="entry-header-date">
+      <p>
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y"
+        -%}
+        <time
+          class="dt-published"
+          datetime="{{ page.date | date_to_xmlschema }}"
+          itemprop="datePublished"
+        >
+          {{ page.date | date: date_format }}
+        </time>
+        {%- if page.modified_date -%} ~ {%- assign mdate = page.modified_date |
+        date_to_xmlschema -%}
+        <time
+          class="dt-modified"
+          datetime="{{ mdate }}"
+          itemprop="dateModified"
+        >
+          {{ mdate | date: date_format }}
+        </time>
+        {%- endif -%} {%- if page.author -%} • {% for author in page.author %}
+        <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-author h-card" itemprop="name"
+            >{{ author }}</span
+          ></span
+        >
+        {%- if forloop.last == false %}, {% endif -%} {% endfor %} {%- endif -%}
+      </p>
+    </div>
+  </header>
 
-    <!-- Content -->
-    <div class="entry-content-container">
-      <div class="entry-content-text" itemprop="articleBody">
-        {{ content }}
+  <!-- Content -->
+  <div class="entry-content-container">
+    <div class="entry-content-text" itemprop="articleBody">{{ content }}</div>
+
+    <!-- Image -->
+    {% if page.gallery %}
+    <div class="entry-content-images">
+      {% for image in page.gallery %}
+      <div class="entry-content-image">
+        <img
+          src="{{ image | relative_url }}"
+          onclick="openModal();currentSlide('{{ forloop.index }}')"
+          class="hover-shadow"
+        />
       </div>
-        <!-- Image -->
-      {% if page.images %}
-      <div class="entry-content-images">
-        {% for image in page.images %}
-        <div class="entry-content-image">
-          <img src="{{ image | relative_url }}" alt="Image">
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- The Modal/Lightbox -->
+    {% if page.gallery %}
+    <div id="myModal" class="modal">
+      <span class="close cursor" onclick="closeModal()">&times;</span>
+      <div class="modal-content">
+        {% for image in page.gallery %}
+        <div class="mySlides">
+          <div class="numbertext">1 / 4</div>
+          <img src="{{ image | relative_url }}" style="width: 100%" />
         </div>
         {% endfor %}
-      </div>
-      {% endif %}
 
+        <!-- Next/previous controls -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+        <!-- Caption text -->
+        <div class="caption-container">
+          <p id="caption"></p>
+        </div>
+        {% endif %}
+
+        <!-- Thumbnail image controls -->
+        {% if page.gallery %} {% for image in page.gallery %}
+        <div class="column">
+          <img
+            class="demo"
+            src="{{ image | relative_url }}"
+            onclick="currentSlide('{{ forloop.index }}')"
+            alt="Nature"
+          />
+        </div>
+        {% endfor %} {% endif %}
+      </div>
     </div>
   </div>
-  {%- if site.disqus.shortname -%}
-    {%- include disqus_comments.html -%}
-  {%- endif -%}
-
+  {%- if site.disqus.shortname -%} {%- include disqus_comments.html -%} {%-
+  endif -%}
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>

@@ -46,9 +46,3 @@ window.addEventListener("scroll", function() {
     header.classList.remove("show");
   }
 });
-
-// lightbox
-lightbox.option({
-  'resizeDuration': 200,
-  'wrapAround': true
-});
